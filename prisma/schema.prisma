@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OGRENCI
+  OGRETMEN
+  YONETICI
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  ogrenciProfil   Ogrenci?
+  ogretmenProfil  Ogretmen?
+}
+
+model Ogrenci {
+  id           String   @id @default(cuid())
+  userId       String   @unique
+  sinif        String
+  sube         String
+  veliAdi      String?
+  veliTelefon  String?
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Relations
+  etutRandevular    EtutRandevu[]
+  odevler           Odev[]
+  yoklamalar        Yoklama[]
+}
+
+model Ogretmen {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  brans           String
+  telefon         String?
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Relations
+  musaatlikler    Musaatlik[]
+  verdigiOdevler  Odev[]
+  verdigiDersler  DersProgrami[]
+}
+
+model DersProgrami {
+  id         String   @id @default(cuid())
+  gun        String   // Pazartesi, Salı, ...
+  saat       String   // 09:00, 10:00, ...
+  dersAdi    String
+  sinif      String
+  ogretmenId String
+  ogretmen   Ogretmen @relation(fields: [ogretmenId], references: [id], onDelete: Cascade)
+}
+
+model Musaatlik {
+  id          String   @id @default(cuid())
+  ogretmenId  String
+  gun         String
+  saat        String
+  musait      Boolean  @default(true)
+  ogretmen    Ogretmen @relation(fields: [ogretmenId], references: [id], onDelete: Cascade)
+
+  @@unique([ogretmenId, gun, saat])
+}
+
+model EtutRandevu {
+  id          String   @id @default(cuid())
+  ogrenciId   String
+  ogretmenId  String
+  tarih       DateTime
+  konu        String
+  durum       String   @default("bekliyor") // bekliyor, onaylandi, iptal
+  olusturulma DateTime @default(now())
+  ogrenci     Ogrenci  @relation(fields: [ogrenciId], references: [id], onDelete: Cascade)
+}
+
+model Odev {
+  id          String   @id @default(cuid())
+  baslik      String
+  aciklama    String
+  sinif       String
+  sonTarih    DateTime
+  ogretmenId  String
+  ogrenciId   String?
+  olusturulma DateTime @default(now())
+  ogretmen    Ogretmen  @relation(fields: [ogretmenId], references: [id], onDelete: Cascade)
+  ogrenci     Ogrenci?  @relation(fields: [ogrenciId], references: [id], onDelete: SetNull)
+}
+
+model Yoklama {
+  id          String   @id @default(cuid())
+  ogrenciId   String
+  dersId      String
+  tarih       DateTime
+  durum       String   // geldi, gelmedi, izinli
+  ogrenci     Ogrenci  @relation(fields: [ogrenciId], references: [id], onDelete: Cascade)
+}
