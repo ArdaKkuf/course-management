@@ -13,7 +13,6 @@ export default function LoginPage() {
   const router = useRouter()
   const [pin, setPin] = useState("")
   const [error, setError] = useState("")
-  const [role, setRole] = useState<"YONETICI" | "OGRETMEN" | "OGRENCI" | null>(null)
 
   const handleLogin = () => {
     if (pin.length !== 4) {
@@ -21,58 +20,24 @@ export default function LoginPage() {
       return
     }
 
+    let role: "YONETICI" | "OGRETMEN" | "OGRENCI" | null = null
+
     if (pin === PIN_CODES.YONETICI) {
-      setRole("YONETICI")
+      role = "YONETICI"
     } else if (pin === PIN_CODES.OGRETMEN) {
-      setRole("OGRETMEN")
+      role = "OGRETMEN"
     } else if (pin === PIN_CODES.OGRENCI) {
-      setRole("OGRENCI")
+      role = "OGRENCI"
     } else {
       setError("Yanlış PIN kodu!")
       return
     }
-  }
 
-  const handleConfirm = () => {
-    if (!role) return
-
-    localStorage.setItem("user", JSON.stringify({
-      role,
-      name: role === "YONETICI" ? "Yönetici" : role === "OGRETMEN" ? "Öğretmen" : "Öğrenci"
-    }))
-
-    router.push("/dashboard")
-  }
-
-  if (role) {
-    const roleNames = {
-      YONETICI: "Yönetici",
-      OGRETMEN: "Öğretmen",
-      OGRENCI: "Öğrenci"
+    if (role) {
+      const name = role === "YONETICI" ? "Yönetici" : role === "OGRETMEN" ? "Öğretmen" : "Öğrenci"
+      localStorage.setItem("user", JSON.stringify({ role, name }))
+      router.push("/dashboard")
     }
-
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-        <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8">
-          <h1 className="text-3xl font-bold text-center text-blue-900 mb-2">
-            Dershane Yönetim Sistemi
-          </h1>
-          <p className="text-center text-gray-600 mb-8">Hoş geldiniz, {roleNames[role]}!</p>
-
-          <div className="text-center py-4">
-            <p className="text-green-600 font-medium text-lg">✅ Doğrulandı</p>
-            <p className="text-sm text-gray-600 mt-2">{roleNames[role]} paneline yönlendiriliyorsunuz...</p>
-          </div>
-
-          <button
-            onClick={handleConfirm}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition text-lg"
-          >
-            Dashboard'a Git
-          </button>
-        </div>
-      </div>
-    )
   }
 
   return (
