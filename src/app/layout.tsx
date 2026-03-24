@@ -4,7 +4,6 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react"
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from "@/components/theme-provider"
-import { ServiceWorkerProvider } from "@/components/service-worker-provider"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,7 +60,6 @@ export default function RootLayout({
         <meta name="application-name" content="Dershane Yönetim" />
       </head>
       <body className="min-h-full flex flex-col">
-        <ServiceWorkerProvider />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

@@ -2,7 +2,7 @@
   "name": "Dershane Yönetim",
   "short_name": "Dershane",
   "description": "Dershaneler için kapsamlı yönetim sistemi",
-  "start_url": "/",
+  "start_url": "/login",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1d4ed8",
