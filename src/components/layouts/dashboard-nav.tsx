@@ -1,8 +1,7 @@
 "use client"
 
-import { useSession, signOut } from "next-auth/react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -13,13 +12,25 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { LayoutDashboard, Users, Calendar, BookOpen, FileText, Settings, LogOut } from "lucide-react"
+import { LayoutDashboard, Users, Calendar, BookOpen, FileText, LogOut } from "lucide-react"
 
-export function DashboardNav() {
-  const { data: session } = useSession()
+interface User {
+  role: string
+  name: string
+}
+
+interface DashboardNavProps {
+  user: User
+}
+
+export function DashboardNav({ user }: DashboardNavProps) {
+  const router = useRouter()
   const pathname = usePathname()
 
-  if (!session?.user) return null
+  const handleLogout = () => {
+    localStorage.removeItem("user")
+    router.push("/")
+  }
 
   const navItems = {
     YONETICI: [
@@ -45,9 +56,9 @@ export function DashboardNav() {
     ]
   }
 
-  const items = navItems[session.user.role] || []
+  const items = navItems[user.role as keyof typeof navItems] || []
   const getDashboardLink = () => {
-    switch (session.user.role) {
+    switch (user.role) {
       case "OGRENCI": return "/dashboard/ogrenci"
       case "OGRETMEN": return "/dashboard/ogretmen"
       case "YONETICI": return "/dashboard/yonetici"
@@ -56,7 +67,7 @@ export function DashboardNav() {
   }
 
   const getRoleLabel = () => {
-    switch (session.user.role) {
+    switch (user.role) {
       case "OGRENCI": return "Öğrenci"
       case "OGRETMEN": return "Öğretmen"
       case "YONETICI": return "Yönetici"
@@ -95,19 +106,19 @@ export function DashboardNav() {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-muted-foreground hidden sm:inline">
+            <span className="text-sm text-muted-foreground">
               {getRoleLabel()}
             </span>
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Button variant="outline" size="sm">
-                  {session.user.name}
+                  {user.name}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>Hesabım</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/login" })}>
+                <DropdownMenuItem onClick={handleLogout}>
                   <LogOut className="h-4 w-4 mr-2" />
                   Çıkış Yap
                 </DropdownMenuItem>

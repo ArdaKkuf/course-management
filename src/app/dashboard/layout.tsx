@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { DashboardNav } from "./dashboard-nav"
+import { DashboardNav } from "@/components/layouts/dashboard-nav"
 
 export default function DashboardLayout({
   children,
