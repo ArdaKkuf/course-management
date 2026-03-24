@@ -19,7 +19,7 @@ export default function OdevEklePage() {
   const [formData, setFormData] = useState({
     baslik: "",
     aciklama: "",
-    sinif: "9",
+    sinif: "11",
     sube: "Tümü",
     sonTarih: ""
   })
@@ -29,20 +29,22 @@ export default function OdevEklePage() {
     setIsLoading(true)
 
     try {
-      const response = await fetch("/api/ogretmen/odev-ekle", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      })
+      // Get existing homework
+      const stored = localStorage.getItem("ogretmenOdevler")
+      const odevler: any[] = stored ? JSON.parse(stored) : []
 
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || "Ödev eklenemedi")
+      // Add new homework
+      const newOdev = {
+        id: Date.now().toString(),
+        ...formData,
+        olusturulma: new Date().toISOString()
       }
 
+      odevler.unshift(newOdev)
+      localStorage.setItem("ogretmenOdevler", JSON.stringify(odevler))
+
       toast.success("Ödev başarıyla eklendi!")
-      router.push("/dashboard/ogretmen")
+      router.push("/dashboard/ogretmen/odevler")
     } catch (error: any) {
       toast.error(error.message || "Bir hata oluştu")
     } finally {
@@ -52,15 +54,15 @@ export default function OdevEklePage() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <Card>
+      <Card className="dark:bg-gray-800 dark:border-gray-700">
         <CardHeader>
-          <CardTitle>Yeni Ödev Ekle</CardTitle>
-          <CardDescription>Öğrencilere ödev atayın</CardDescription>
+          <CardTitle className="dark:text-white">Yeni Ödev Ekle</CardTitle>
+          <CardDescription className="dark:text-gray-400">Öğrencilere ödev atayın</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="baslik">Ödev Başlığı</Label>
+              <Label htmlFor="baslik" className="dark:text-gray-300">Ödev Başlığı</Label>
               <Input
                 id="baslik"
                 value={formData.baslik}
@@ -68,14 +70,15 @@ export default function OdevEklePage() {
                 placeholder="Örn: Matematik Problemleri - 1"
                 required
                 disabled={isLoading}
+                className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="sinif">Sınıf</Label>
+                <Label htmlFor="sinif" className="dark:text-gray-300">Sınıf</Label>
                 <Select value={formData.sinif} onValueChange={(value) => value && setFormData({ ...formData, sinif: value })}>
-                  <SelectTrigger>
+                  <SelectTrigger className="dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -87,9 +90,9 @@ export default function OdevEklePage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="sube">Şube</Label>
+                <Label htmlFor="sube" className="dark:text-gray-300">Şube</Label>
                 <Select value={formData.sube} onValueChange={(value) => value && setFormData({ ...formData, sube: value })}>
-                  <SelectTrigger>
+                  <SelectTrigger className="dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -102,7 +105,7 @@ export default function OdevEklePage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="sonTarih">Son Teslim Tarihi</Label>
+              <Label htmlFor="sonTarih" className="dark:text-gray-300">Son Teslim Tarihi</Label>
               <Input
                 id="sonTarih"
                 type="date"
@@ -111,11 +114,12 @@ export default function OdevEklePage() {
                 min={new Date().toISOString().split('T')[0]}
                 required
                 disabled={isLoading}
+                className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="aciklama">Açıklama</Label>
+              <Label htmlFor="aciklama" className="dark:text-gray-300">Açıklama</Label>
               <Textarea
                 id="aciklama"
                 value={formData.aciklama}
@@ -124,6 +128,7 @@ export default function OdevEklePage() {
                 rows={5}
                 required
                 disabled={isLoading}
+                className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               />
             </div>
           </CardContent>
@@ -136,6 +141,7 @@ export default function OdevEklePage() {
               variant="outline"
               onClick={() => router.back()}
               disabled={isLoading}
+              className="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
             >
               İptal
             </Button>
