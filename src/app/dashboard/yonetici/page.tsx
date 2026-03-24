@@ -14,10 +14,10 @@ export default function YoneticiDashboardPage() {
   ]
 
   const sonEtutler = [
-    { id: 1, ogrenci: "Ahmet Yılmaz", konu: "Matematik - Türev", tarih: "2024-03-25", durum: "onaylandi" },
-    { id: 2, ogrenci: "Zeynep Kaya", konu: "Fizik - Kuvvet", tarih: "2024-03-24", durum: "bekliyor" },
-    { id: 3, ogrenci: "Mehmet Demir", konu: "Kimya - Tepkimeler", tarih: "2024-03-24", durum: "onaylandi" },
-    { id: 4, ogrenci: "Ayşe Çelik", konu: "Biyoloji - Hücre", tarih: "2024-03-23", durum: "iptal" },
+    { id: 1, ogrenci: "Ahmet Yılmaz", konu: "Matematik - Türev", tarih: "2026-03-26", durum: "onaylandi" },
+    { id: 2, ogrenci: "Zeynep Kaya", konu: "Fizik - Kuvvet", tarih: "2026-03-27", durum: "bekliyor" },
+    { id: 3, ogrenci: "Mehmet Demir", konu: "Kimya - Tepkimeler", tarih: "2026-03-27", durum: "onaylandi" },
+    { id: 4, ogrenci: "Ayşe Çelik", konu: "Biyoloji - Hücre", tarih: "2026-03-25", durum: "iptal" },
   ]
 
   return (

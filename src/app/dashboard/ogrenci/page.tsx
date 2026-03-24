@@ -26,14 +26,14 @@ export default function OgrenciDashboardPage() {
   ]
 
   const yakinanOdevler = [
-    { id: 1, baslik: "Türev Problemleri", aciklama: "Sayfa 45-48 arası sorular", sonTarih: "2024-03-28" },
-    { id: 2, baslik: "İntegral Test", aciklama: "Konu tekrarı ve test çözümü", sonTarih: "2024-03-30" },
-    { id: 3, baslik: "Logaritma Ödevi", aciklama: "Formül ve uygulamalar", sonTarih: "2024-04-02" },
+    { id: 1, baslik: "Türev Problemleri", aciklama: "Sayfa 45-48 arası sorular", sonTarih: "2026-03-30" },
+    { id: 2, baslik: "İntegral Test", aciklama: "Konu tekrarı ve test çözümü", sonTarih: "2026-04-02" },
+    { id: 3, baslik: "Logaritma Ödevi", aciklama: "Formül ve uygulamalar", sonTarih: "2026-04-05" },
   ]
 
   const sonRandevular = [
-    { id: 1, konu: "Matematik - Türev", tarih: "2024-03-28", durum: "onaylandi" },
-    { id: 2, konu: "Fizik - Kuvvet", tarih: "2024-03-29", durum: "bekliyor" },
+    { id: 1, konu: "Matematik - Türev", tarih: "2026-03-26", durum: "onaylandi" },
+    { id: 2, konu: "Fizik - Kuvvet", tarih: "2026-03-27", durum: "bekliyor" },
   ]
 
   return (

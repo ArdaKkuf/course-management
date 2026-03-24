@@ -27,9 +27,9 @@ export default function OgretmenDashboardPage() {
   ]
 
   const sonOdevler = [
-    { id: 1, baslik: "Türev Problemleri", sinif: "11A", sonTarih: "2024-03-28" },
-    { id: 2, baslik: "İntegral Test", sinif: "11B", sonTarih: "2024-03-30" },
-    { id: 3, baslik: "Logaritma Ödevi", sinif: "10A", sonTarih: "2024-04-02" },
+    { id: 1, baslik: "Türev Problemleri", sinif: "11A", sonTarih: "2026-03-30" },
+    { id: 2, baslik: "İntegral Test", sinif: "11B", sonTarih: "2026-04-02" },
+    { id: 3, baslik: "Logaritma Ödevi", sinif: "10A", sonTarih: "2026-04-05" },
   ]
 
   return (

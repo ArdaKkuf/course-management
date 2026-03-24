@@ -15,9 +15,9 @@ type EtutRandevu = {
 
 export default function RandevularPage() {
   const [randevular, setRandevular] = useState<EtutRandevu[]>([
-    { id: "1", ogrenciAd: "Ahmet Yılmaz", tarih: "2024-03-28T14:00", konu: "Matematik - Türev", durum: "bekliyor" },
-    { id: "2", ogrenciAd: "Zeynep Kaya", tarih: "2024-03-29T10:00", konu: "Fizik - Kuvvet", durum: "onaylandi" },
-    { id: "3", ogrenciAd: "Mehmet Demir", tarih: "2024-03-30T15:00", konu: "Kimya - Tepkimeler", durum: "bekliyor" },
+    { id: "1", ogrenciAd: "Ahmet Yılmaz", tarih: "2026-03-26T14:00", konu: "Matematik - Türev", durum: "bekliyor" },
+    { id: "2", ogrenciAd: "Zeynep Kaya", tarih: "2026-03-27T10:00", konu: "Fizik - Kuvvet", durum: "onaylandi" },
+    { id: "3", ogrenciAd: "Mehmet Demir", tarih: "2026-03-28T15:00", konu: "Kimya - Tepkimeler", durum: "bekliyor" },
   ])
 
   const updateDurum = async (id: string, durum: string) => {

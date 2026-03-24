@@ -30,9 +30,9 @@ export default function OgrenciOdevlerPage() {
     } else {
       // Demo data
       const demoOdevler = [
-        { id: "1", baslik: "Türev Problemleri", aciklama: "Sayfa 45-48 arası sorular", ogretmen: "Ahmet Yılmaz", sonTarih: "2024-03-28" },
-        { id: "2", baslik: "İntegral Test", aciklama: "Konu tekrarı ve test çözümü", ogretmen: "Ahmet Yılmaz", sonTarih: "2024-03-30" },
-        { id: "3", baslik: "Logaritma Ödevi", aciklama: "Formül ve uygulamalar", ogretmen: "Zeynep Kaya", sonTarih: "2024-04-02" },
+        { id: "1", baslik: "Türev Problemleri", aciklama: "Sayfa 45-48 arası sorular", ogretmen: "Ahmet Yılmaz", sonTarih: "2026-03-30" },
+        { id: "2", baslik: "İntegral Test", aciklama: "Konu tekrarı ve test çözümü", ogretmen: "Ahmet Yılmaz", sonTarih: "2026-04-02" },
+        { id: "3", baslik: "Logaritma Ödevi", aciklama: "Formül ve uygulamalar", ogretmen: "Zeynep Kaya", sonTarih: "2026-04-05" },
       ]
       setOdevler(demoOdevler)
     }

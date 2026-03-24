@@ -111,7 +111,7 @@ export default function OdevEklePage() {
                 type="date"
                 value={formData.sonTarih}
                 onChange={(e) => setFormData({ ...formData, sonTarih: e.target.value })}
-                min={new Date().toISOString().split('T')[0]}
+                min="2026-03-25"
                 required
                 disabled={isLoading}
                 className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"

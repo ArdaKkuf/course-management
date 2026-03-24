@@ -26,9 +26,9 @@ export default function OgretmenOdevlerPage() {
     } else {
       // Demo data
       const demoOdevler = [
-        { id: "1", baslik: "Türev Problemleri", sinif: "11", sube: "A", sonTarih: "2024-03-28", olusturulma: "2024-03-20" },
-        { id: "2", baslik: "İntegral Test", sinif: "11", sube: "B", sonTarih: "2024-03-30", olusturulma: "2024-03-21" },
-        { id: "3", baslik: "Logaritma Ödevi", sinif: "10", sube: "A", sonTarih: "2024-04-02", olusturulma: "2024-03-22" },
+        { id: "1", baslik: "Türev Problemleri", sinif: "11", sube: "A", sonTarih: "2026-03-30", olusturulma: "2026-03-24" },
+        { id: "2", baslik: "İntegral Test", sinif: "11", sube: "B", sonTarih: "2026-04-02", olusturulma: "2026-03-24" },
+        { id: "3", baslik: "Logaritma Ödevi", sinif: "10", sube: "A", sonTarih: "2026-04-05", olusturulma: "2026-03-24" },
       ]
       setOdevler(demoOdevler)
       localStorage.setItem("ogretmenOdevler", JSON.stringify(demoOdevler))

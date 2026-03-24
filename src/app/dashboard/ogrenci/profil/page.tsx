@@ -12,8 +12,8 @@ export default function OgrenciProfilPage() {
     veliAdi: "Mehmet Yılmaz",
     veliTelefon: "0555 123 4567",
     etutRandevular: [
-      { id: "1", konu: "Matematik - Türev", tarih: "2024-03-28", durum: "onaylandi" },
-      { id: "2", konu: "Fizik - Kuvvet", tarih: "2024-03-29", durum: "bekliyor" },
+      { id: "1", konu: "Matematik - Türev", tarih: "2026-03-26", durum: "onaylandi" },
+      { id: "2", konu: "Fizik - Kuvvet", tarih: "2026-03-27", durum: "bekliyor" },
     ]
   }
 
