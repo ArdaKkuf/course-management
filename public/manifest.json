@@ -1,9 +1,0 @@
-{
-  "name": "Dershane Yönetim",
-  "short_name": "Dershane",
-  "start_url": "/login",
-  "display": "fullscreen",
-  "background_color": "#0f172a",
-  "theme_color": "#1d4ed8",
-  "orientation": "portrait"
-}
