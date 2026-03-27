@@ -13,61 +13,121 @@ interface Soru {
 type Durum = "basla" | "oyun" | "sonuc"
 
 function soruUret(): Soru {
-  const islemler = ["+", "-", "×", "÷"]
-  const islem = islemler[Math.floor(Math.random() * islemler.length)]
+  const soruTipleri = [
+    // Üslü sayılar
+    () => {
+      const taban = Math.floor(Math.random() * 5) + 2 // 2-6
+      const us = Math.floor(Math.random() * 4) + 2 // 2-5
+      const cevap = Math.pow(taban, us)
+      return {
+        soru: `${taban}^${us} = ?`,
+        dogru: cevap.toString()
+      }
+    },
+    // Köklü ifadeler
+    () => {
+      const kok = Math.floor(Math.random() * 15) + 4 // 4-18 (tam kare olmayan)
+      const us = Math.floor(Math.random() * 2) + 2 // 2-3
+      const cevap = Math.pow(kok, 1/us)
+      // En yakın tam sayıları bul
+      const dogru = Math.round(cevap * 10) / 10
+      return {
+        soru: `√${Math.pow(kok, us)} = ?`,
+        dogru: kok.toString()
+      }
+    },
+    // Basit eşitsizlik
+    () => {
+      const a = Math.floor(Math.random() * 10) + 1
+      const x = Math.floor(Math.random() * 5) + 1
+      const sonuc = a * x + Math.floor(Math.random() * 10)
+      return {
+        soru: `${a}x + ${Math.floor(Math.random() * 10)} > ${sonuc}, en küçük tam sayı x = ?`,
+        dogru: x.toString()
+      }
+    },
+    // Bölünebilme
+    () => {
+      const bolunen = Math.floor(Math.random() * 150) + 50
+      const bolen = [2, 3, 4, 5, 6, 8, 9, 10][Math.floor(Math.random() * 8)]
+      const kalan = bolunen % bolen
+      return {
+        soru: `${bolunen} sayısı ${bolen}'ye tam bölünürse kalan kaç eder?`,
+        dogru: kalan.toString()
+      }
+    },
+    // Mutlak değer
+    () => {
+      const ic = Math.floor(Math.random() * 20) - 10
+      const dogru = Math.abs(ic)
+      return {
+        soru: `|${ic}| = ?`,
+        dogru: dogru.toString()
+      }
+    },
+    // Çarpanlarına ayırma
+    () => {
+      const x = Math.floor(Math.random() * 5) + 2
+      const a = Math.floor(Math.random() * 5) + 1
+      const sonuc = a * x
+      return {
+        soru: `${x} × ${a} = ?`,
+        dogru: sonuc.toString()
+      }
+    },
+    // Ondalık gösterim
+    () => {
+      const sayi = Math.floor(Math.random() * 100) + 10
+      const ondalik = sayi / 100
+      return {
+        soru: `${ondalak} = ?/100`,
+        dogru: sayi.toString()
+      }
+    },
+    // Oran-orantı
+    () => {
+      const a = Math.floor(Math.random() * 5) + 2
+      const b = a * (Math.floor(Math.random() * 3) + 2)
+      const c = Math.floor(Math.random() * 5) + 2
+      const d = (b * c) / a
+      return {
+        soru: `${a}:${b} = ${c}:?`,
+        dogru: d.toString()
+      }
+    },
+    // RD toplama
+    () => {
+      const pay1 = Math.floor(Math.random() * 5) + 1
+      const payda1 = Math.floor(Math.random() * 5) + 2
+      const pay2 = Math.floor(Math.random() * 5) + 1
+      const payda2 = payda1
+      const dogru = pay1 + pay2
+      return {
+        soru: `${pay1}/${payda1} + ${pay2}/${payda2} = ?/${payda1}`,
+        dogru: dogru.toString()
+      }
+    }
+  ]
 
-  let sayi1: number
-  let sayi2: number
-  let cevap: number
-  let soruMetni: string
-
-  switch (islem) {
-    case "+":
-      sayi1 = Math.floor(Math.random() * 100) + 1
-      sayi2 = Math.floor(Math.random() * 100) + 1
-      cevap = sayi1 + sayi2
-      break
-    case "-":
-      sayi1 = Math.floor(Math.random() * 100) + 20
-      sayi2 = Math.floor(Math.random() * sayi1)
-      cevap = sayi1 - sayi2
-      break
-    case "×":
-      sayi1 = Math.floor(Math.random() * 12) + 2
-      sayi2 = Math.floor(Math.random() * 12) + 2
-      cevap = sayi1 * sayi2
-      break
-    case "÷":
-      sayi2 = Math.floor(Math.random() * 11) + 2
-      cevap = Math.floor(Math.random() * 12) + 2
-      sayi1 = sayi2 * cevap
-      break
-    default:
-      sayi1 = 1
-      sayi2 = 1
-      cevap = 1
-  }
-
-  soruMetni = `${sayi1} ${islem} ${sayi2} = ?`
+  const seciliSoru = soruTipleri[Math.floor(Math.random() * soruTipleri.length)]()
+  const dogruCevap = seciliSoru.dogru
 
   // Yanlış seçenekler üret
-  const secenekler = [cevap.toString()]
+  const secenekler = [dogruCevap]
   while (secenekler.length < 4) {
-    let yanlisCevap: number
+    let yanlisCevap: string
     const rastgele = Math.random()
 
-    if (rastgele < 0.25) {
-      yanlisCevap = cevap + Math.floor(Math.random() * 10) + 1
-    } else if (rastgele < 0.5) {
-      yanlisCevap = cevap - Math.floor(Math.random() * 10) - 1
-    } else if (rastgele < 0.75) {
-      yanlisCevap = cevap + Math.floor(Math.random() * 5) + 1
+    if (rastgele < 0.3) {
+      yanlisCevap = (parseInt(dogruCevap) + Math.floor(Math.random() * 5) + 1).toString()
+    } else if (rastgele < 0.6) {
+      yanlisCevap = Math.max(0, (parseInt(dogruCevap) - Math.floor(Math.random() * 5) - 1)).toString()
     } else {
-      yanlisCevap = Math.floor(Math.random() * 150)
+      yanlisCevap = (parseInt(dogruCevap) * (Math.floor(Math.random() * 2) + 2)).toString()
     }
 
-    if (yanlisCevap >= 0 && yanlisCevap !== cevap && !secenekler.includes(yanlisCevap.toString())) {
-      secenekler.push(yanlisCevap.toString())
+    if (yanlisCevap !== dogruCevap && !secenekler.includes(yanlisCevap)) {
+      secenekler.push(yanlisCevap)
     }
   }
 
@@ -75,9 +135,9 @@ function soruUret(): Soru {
   const karistirilmis = secenekler.sort(() => Math.random() - 0.5)
 
   return {
-    soru: soruMetni,
+    soru: seciliSoru.soru,
     secenekler: karistirilmis,
-    dogru: cevap.toString()
+    dogru: dogruCevap
   }
 }
 
@@ -129,8 +189,14 @@ export function MatematikOyunu() {
     if (secim === soru.dogru) {
       const yeniSeri = seri + 1
       const seriBonus = yeniSeri >= 3 ? Math.pow(1.5, yeniSeri - 2) : 1
-      const zorlukBonus = soru.soru.includes("×") || soru.soru.includes("÷") ? 1.5 : 1
-      const yeniPuan = Math.round(10 * seriBonus * zorlukBonus)
+      // Zor sorular daha çok puan
+      let zorlukBonus = 1
+      if (soru.soru.includes("^")) zorlukBonus = 2
+      else if (soru.soru.includes("√")) zorlukBonus = 1.8
+      else if (soru.soru.includes("|")) zorlukBonus = 1.5
+      else if (soru.soru.includes("/")) zorlukBonus = 1.3
+
+      const yeniPuan = Math.round(15 * seriBonus * zorlukBonus)
       setPuan(prev => prev + yeniPuan)
       setSeri(yeniSeri)
       setDogruCevaplar(prev => prev + 1)
@@ -171,7 +237,7 @@ export function MatematikOyunu() {
             </div>
           </div>
           <p className="text-muted-foreground dark:text-gray-400">
-            1 dakikada kaç işlem çözersin? Çarpma/bölme daha çok puan!
+            TYT seviyesi sorular! Üslü sayılar, kökler, eşitsizlikler, RD, ve daha fazlası.
           </p>
           <Button onClick={basla} className="w-full">
             Oyunu Başlat
