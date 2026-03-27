@@ -183,7 +183,7 @@ export const quizVerisi = {
       { soru: "Korunum yasası çarpışmalar için hangi durumlarda geçerlidir?", secenekler: ["Yalıtık sistem", "Her durumda", "Sadece dünyada", "Sadece uzayda"], dogru: "Yalıtık sistem" },
       { soru: "Merkezcil kuvvet örnekleri nelerdir?", secenekler: ["Yer çekimi, manyetik kuvvet", "Sürtünme, gerilme", "Normal kuvvet"], dogru: "Yer çekimi, manyetik kuvvet" },
       { soru: "Temas kuvvetleri örnekleri nelerdir?", secenekler: ["Sürtünme, gerilme, normal kuvvet", "Yer çekimi", "Elektrik kuvveti"], dogru: "Sürtünme, gerilme, normal kuvvet" },
-      { soru: "Aşağıdaki kuvvetlerden hangisi vektörel değildir?", secenekler: ["Yok", hepsi vektörel"], dogru: "Yok" },
+      { soru: "Aşağıdaki kuvvetlerden hangisi vektörel değildir?", secenekler: ["Yok", "Hepsi vektörel"], dogru: "Yok" },
       { soru: "Kuvvet nasıl toplanır?", secenekler: ["Paralelkenköşegen kuralı ile", "Doğrudan toplama ile", "Sadece büyüklükleri topla", "Sadece yönleri topla"], dogru: "Paralelkenköşegen kuralı ile" },
       { soru: "Aynı yöndeki iki kuvvet 10 N ve 5 N ise sonuç kaç N'dir?", secenekler: ["15 N", "5 N", "10 N", "50 N"], dogru: "15 N" },
       { soru: "Zıt yöndeki iki kuvvet 10 N ve 5 N ise sonuç kaç N'dir?", secenekler: ["5 N zıt yönde", "15 N", "5 N aynı yönde", "0 N"], dogru: "5 N zıt yönde" },
