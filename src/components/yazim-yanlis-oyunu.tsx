@@ -190,7 +190,7 @@ export function YazimYanlisOyunu() {
 
   const basla = () => {
     setDurum("oyun")
-    setSure(120)
+    setSure(60)
     setPuan(0)
     setSeri(0)
     setYanlislar([])
@@ -243,7 +243,7 @@ export function YazimYanlisOyunu() {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-muted-foreground dark:text-gray-400">
-            Doğru yazılışı seç! 2 dakika süren var. Seri yaparsan puanın katlanır!
+            Doğru yazılışı seç! 1 dakika süren var. Seri yaparsan puanın katlanır!
           </p>
           <Button onClick={basla} className="w-full">
             Oyunu Başlat
