@@ -139,3 +139,27 @@
     height: env(safe-area-inset-bottom);
   }
 }
+
+/* iOS Standalone PWA Mode - Full screen, no address bar */
+@supports (-webkit-touch-callout: none) {
+  body {
+    /* Prevent rubber-band scrolling */
+    overscroll-behavior-y: none;
+  }
+
+  /* When in standalone mode, ensure full viewport */
+  html {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

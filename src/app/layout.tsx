@@ -20,17 +20,19 @@ export const metadata: Metadata = {
   description: "Dershaneler için kapsamlı yönetim sistemi",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
-    title: "Dershane Yönetim",
+    statusBarStyle: "black-translucent",
+    title: "Dershane",
   },
   formatDetection: {
     telephone: false,
   },
   viewport: {
     width: "device-width",
+    height: "device-height",
     initialScale: 1,
     maximumScale: 1,
     userScalable: false,
+    viewportFit: "cover",
   },
 };
 
@@ -48,10 +50,14 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/icon-192.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/icon-192.svg" />
+        <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Dershane" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="application-name" content="Dershane Yönetim" />
+        <meta name="application-name" content="Dershane" />
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximumScale=1, user-scalable=no, viewport-fit=cover" />
+        <meta name="theme-color" content="#1e3a8a" />
       </head>
       <body className="min-h-full flex flex-col">
         <ThemeProvider

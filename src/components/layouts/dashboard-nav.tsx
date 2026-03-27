@@ -5,14 +5,6 @@ import { usePathname, useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { LayoutDashboard, Users, Calendar, BookOpen, FileText, LogOut, Moon, Sun } from "lucide-react"
 
 interface User {
@@ -107,7 +99,7 @@ export function DashboardNav({ user }: DashboardNavProps) {
             })}
           </nav>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <Button
               variant="ghost"
               size="sm"
@@ -119,24 +111,19 @@ export function DashboardNav({ user }: DashboardNavProps) {
               <span className="sr-only">Toggle theme</span>
             </Button>
 
-            <span className="text-sm text-muted-foreground dark:text-gray-400 hidden md:inline">
-              {getRoleLabel()}
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-200 hidden md:inline">
+              {user.name}
             </span>
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button variant="outline" size="sm" className="dark:bg-gray-800 dark:border-gray-700 dark:text-white">
-                  {user.name}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 dark:bg-gray-800 dark:border-gray-700">
-                <DropdownMenuLabel className="dark:text-white">Hesabım</DropdownMenuLabel>
-                <DropdownMenuSeparator className="dark:bg-gray-700" />
-                <DropdownMenuItem onClick={handleLogout} className="dark:text-gray-200 dark:focus:bg-gray-700">
-                  <LogOut className="h-4 w-4 mr-2" />
-                  Çıkış Yap
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleLogout}
+              className="dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700"
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="hidden md:inline ml-2">Çıkış</span>
+            </Button>
           </div>
         </div>
       </div>

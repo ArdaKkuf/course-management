@@ -1,4 +1,6 @@
 import { YazimYanlisOyunu } from "@/components/yazim-yanlis-oyunu"
+import { MatematikOyunu } from "@/components/matematik-oyunu"
+import { Card, CardContent } from "@/components/ui/card"
 
 export default function OyunlarPage() {
   return (
@@ -8,8 +10,13 @@ export default function OyunlarPage() {
         <p className="text-muted-foreground dark:text-gray-400">Derslerini eğlenerek pekiştir!</p>
       </div>
 
-      <div className="max-w-2xl">
-        <YazimYanlisOyunu />
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
+        <div className="max-w-2xl mx-auto w-full">
+          <MatematikOyunu />
+        </div>
+        <div className="max-w-2xl mx-auto w-full">
+          <YazimYanlisOyunu />
+        </div>
       </div>
     </div>
   )
