@@ -2,8 +2,35 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { useState, useEffect } from "react"
+
+interface YanlisSoru {
+  soru: string
+  dogru: string
+  secim: string
+  tarih: string
+  ders: string
+}
 
 export default function OgrenciProfilPage() {
+  const [yanlisSorular, setYanlisSorular] = useState<YanlisSoru[]>([])
+  const [sorularGorunur, setSorularGorunur] = useState(false)
+
+  useEffect(() => {
+    // localStorage'dan yanlış soruları yükle
+    const savedQuestions = localStorage.getItem('tytQuizYanlislar')
+    if (savedQuestions) {
+      setYanlisSorular(JSON.parse(savedQuestions))
+    }
+  }, [])
+
+  const sorulariTemizle = () => {
+    localStorage.removeItem('tytQuizYanlislar')
+    setYanlisSorular([])
+  }
+
   // Demo data
   const ogrenci = {
     user: { name: "Ahmet Yılmaz", email: "ahmet@email.com" },
@@ -31,7 +58,7 @@ export default function OgrenciProfilPage() {
         <p className="text-muted-foreground dark:text-gray-400">Kişisel bilgileriniz</p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-3">
         {/* Personal Information */}
         <Card className="dark:bg-gray-800 dark:border-gray-700">
           <CardHeader>
@@ -85,6 +112,62 @@ export default function OgrenciProfilPage() {
             </Table>
           </CardContent>
         </Card>
+
+        {/* Sorularım */}
+        <Card className="dark:bg-gray-800 dark:border-gray-700">
+          <CardHeader>
+            <CardTitle className="dark:text-white flex justify-between items-center">
+              <span>Sorularım</span>
+              <span className="text-sm font-normal text-muted-foreground dark:text-gray-400">
+                {yanlisSorular.length} soru
+              </span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {yanlisSorular.length === 0 ? (
+              <p className="text-sm text-muted-foreground dark:text-gray-400 text-center py-4">
+                Henüz yanlış sorunuz yok
+              </p>
+            ) : (
+              <div className="space-y-3">
+                {yanlisSorular.slice(-5).reverse().map((soru, index) => (
+                  <div key={index} className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg space-y-2">
+                    <p className="text-sm font-medium dark:text-gray-200">{soru.soru}</p>
+                    <div className="flex gap-4 text-xs">
+                      <span className="text-red-600 dark:text-red-400">
+                        Seçimin: {soru.secim}
+                      </span>
+                      <span className="text-green-600 dark:text-green-400">
+                        Doğru: {soru.dogru}
+                      </span>
+                    </div>
+                    <div className="text-xs text-muted-foreground dark:text-gray-400">
+                      {soru.ders} • {new Date(soru.tarih).toLocaleDateString('tr-TR')}
+                    </div>
+                  </div>
+                ))}
+                {yanlisSorular.length > 5 && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full"
+                    onClick={() => setSorularGorunur(true)}
+                  >
+                    Tümünü Gör ({yanlisSorular.length})
+                  </Button>
+                )}
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  className="w-full"
+                  onClick={sorulariTemizle}
+                >
+                  Temizle
+                </Button>
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </div>
 
       {/* Recent Appointments */}
@@ -125,6 +208,52 @@ export default function OgrenciProfilPage() {
           </CardContent>
         </Card>
       )}
+
+      {/* Tüm Sorular Modal */}
+      <Dialog open={sorularGorunur} onOpenChange={setSorularGorunur}>
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto dark:bg-gray-800 dark:border-gray-700">
+          <DialogHeader>
+            <DialogTitle className="dark:text-white">Tüm Yanlış Sorularım ({yanlisSorular.length})</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            {yanlisSorular.length === 0 ? (
+              <p className="text-sm text-muted-foreground dark:text-gray-400 text-center py-4">
+                Henüz yanlış sorunuz yok
+              </p>
+            ) : (
+              yanlisSorular.reverse().map((soru, index) => (
+                <div key={index} className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg space-y-3 border dark:border-gray-600">
+                  <p className="text-sm font-medium dark:text-gray-200">{soru.soru}</p>
+                  <div className="flex gap-4 text-xs">
+                    <span className="text-red-600 dark:text-red-400 font-semibold">
+                      Seçimin: {soru.secim}
+                    </span>
+                    <span className="text-green-600 dark:text-green-400 font-semibold">
+                      Doğru: {soru.dogru}
+                    </span>
+                  </div>
+                  <div className="text-xs text-muted-foreground dark:text-gray-400">
+                    {soru.ders} • {new Date(soru.tarih).toLocaleDateString('tr-TR')} • {new Date(soru.tarih).toLocaleTimeString('tr-TR')}
+                  </div>
+                </div>
+              ))
+            )}
+            {yanlisSorular.length > 0 && (
+              <Button
+                variant="destructive"
+                size="sm"
+                className="w-full"
+                onClick={() => {
+                  sorulariTemizle()
+                  setSorularGorunur(false)
+                }}
+              >
+                Tümünü Temizle
+              </Button>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
