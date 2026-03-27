@@ -1,4 +1,5 @@
 import { YazimYanlisOyunu } from "@/components/yazim-yanlis-oyunu"
+import { TYTQuizOyunu } from "@/components/tyt-quiz-oyunu"
 
 export default function OyunlarPage() {
   return (
@@ -8,8 +9,13 @@ export default function OyunlarPage() {
         <p className="text-muted-foreground dark:text-gray-400">Derslerini eğlenerek pekiştir!</p>
       </div>
 
-      <div className="max-w-2xl">
-        <YazimYanlisOyunu />
+      <div className="grid gap-6 lg:grid-cols-2">
+        <div className="max-w-2xl mx-auto w-full">
+          <YazimYanlisOyunu />
+        </div>
+        <div className="max-w-2xl mx-auto w-full">
+          <TYTQuizOyunu />
+        </div>
       </div>
     </div>
   )
