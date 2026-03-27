@@ -160,11 +160,20 @@ export function YazimYanlisOyunu() {
   const [soru, setSoru] = useState<Soru | null>(null)
   const [soruIndex, setSoruIndex] = useState(0)
   const [kullanilanSorular, setKullanilanSorular] = useState<Set<number>>(new Set())
-  const [sure, setSure] = useState(120)
+  const [sure, setSure] = useState(60)
   const [puan, setPuan] = useState(0)
   const [seri, setSeri] = useState(0)
   const [yanlislar, setYanlislar] = useState<Array<{ dogru: string; yanlis: string; secim: string }>>([])
   const [dogruCevaplar, setDogruCevaplar] = useState(0)
+  const [bestScore, setBestScore] = useState(0)
+  const [sonSkor, setSonSkor] = useState(0)
+
+  useEffect(() => {
+    const savedBest = localStorage.getItem("yazimYanlisBest")
+    const savedLast = localStorage.getItem("yazimYanlisSon")
+    if (savedBest) setBestScore(parseInt(savedBest))
+    if (savedLast) setSonSkor(parseInt(savedLast))
+  }, [])
 
   const soruUret = useCallback(() => {
     if (kullanilanSorular.size >= kelimeler.length) {
@@ -200,6 +209,12 @@ export function YazimYanlisOyunu() {
   }
 
   const bitir = () => {
+    if (puan > bestScore) {
+      setBestScore(puan)
+      localStorage.setItem("yazimYanlisBest", puan.toString())
+    }
+    setSonSkor(puan)
+    localStorage.setItem("yazimYanlisSon", puan.toString())
     setDurum("sonuc")
   }
 
@@ -242,6 +257,16 @@ export function YazimYanlisOyunu() {
           <CardTitle className="dark:text-white">🎯 Yazım Yanlışı Oyunu</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="text-center p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg">
+              <p className="text-sm text-yellow-800 dark:text-yellow-400">En İyi Skor</p>
+              <p className="text-2xl font-bold text-yellow-900 dark:text-yellow-300">{bestScore}</p>
+            </div>
+            <div className="text-center p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+              <p className="text-sm text-blue-800 dark:text-blue-400">Son Skor</p>
+              <p className="text-2xl font-bold text-blue-900 dark:text-blue-300">{sonSkor}</p>
+            </div>
+          </div>
           <p className="text-muted-foreground dark:text-gray-400">
             Doğru yazılışı seç! 1 dakika süren var. Seri yaparsan puanın katlanır!
           </p>
