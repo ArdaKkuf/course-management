@@ -168,10 +168,10 @@ export function YazimYanlisOyunu() {
     setSoruIndex(rastgeleIndex)
 
     const secilenSoru = kelimeler[rastgeleIndex]
-    // Sol = yanlış, Sağ = doğru (sabit)
+    const solTaraf = Math.random() < 0.5 ? "dogru" : "yanlis"
     setSoru({
-      dogru: secilenSoru.dogru,
-      yanlis: secilenSoru.yanlis,
+      dogru: solTaraf === "dogru" ? secilenSoru.dogru : secilenSoru.yanlis,
+      yanlis: solTaraf === "dogru" ? secilenSoru.yanlis : secilenSoru.dogru,
     })
   }, [kullanilanSorular])
 
@@ -264,18 +264,18 @@ export function YazimYanlisOyunu() {
             <p className="text-lg font-medium dark:text-gray-200 mb-4">Doğru yazılış hangisi?</p>
             <div className="grid grid-cols-2 gap-4">
               <Button
-                onClick={() => cevapVer(soru.yanlis)}
-                variant="outline"
-                className="h-24 text-lg font-semibold dark:border-gray-600 dark:hover:bg-gray-700"
-              >
-                {soru.yanlis}
-              </Button>
-              <Button
                 onClick={() => cevapVer(soru.dogru)}
                 variant="outline"
                 className="h-24 text-lg font-semibold dark:border-gray-600 dark:hover:bg-gray-700"
               >
                 {soru.dogru}
+              </Button>
+              <Button
+                onClick={() => cevapVer(soru.yanlis)}
+                variant="outline"
+                className="h-24 text-lg font-semibold dark:border-gray-600 dark:hover:bg-gray-700"
+              >
+                {soru.yanlis}
               </Button>
             </div>
           </div>
