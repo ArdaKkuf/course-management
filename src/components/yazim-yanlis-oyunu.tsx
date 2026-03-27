@@ -10,48 +10,134 @@ interface Soru {
 }
 
 const kelimeler: Soru[] = [
-  { dogru: "öğrenci", yanlis: "öğrancı" },
-  { dogru: "gidiyor", yanlis: "gıdıyor" },
-  { dogru: "yazım", yanlis: "yazıym" },
-  { dogru: "gerçekten", yanlis: "gercekten" },
-  { dogru: "nasıl", yanlis: "nası" },
-  { dogru: "böylece", yanlis: "böyleçe" },
-  { dogru: "çünkü", yanlis: "çünki" },
-  { dogru: "muhtemelen", yanlis: "muhtmelen" },
-  { dogru: "tabii", yanlis: "tabi" },
-  { dogru: "bağlı", yanlis: "baglı" },
-  { dogru: "dersane", yanlis: "dershane" },
-  { dogru: "arkadaş", yanlis: "arkadas" },
-  { dogru: "kitapçı", yanlis: "kitapçi" },
-  { dogru: "güzergah", yanlis: "güzergeh" },
-  { dogru: "ebedi", yanlis: "ebadi" },
-  { dogru: "lazım", yanlis: "lazıym" },
-  { dogru: "diyor", yanlis: "dıyor" },
-  { dogru: "biliyorum", yanlis: "bılıyorum" },
-  { dogru: "geliyor", yanlis: "gelıyor" },
-  { dogru: "yazıyor", yanlis: "yazıor" },
-  { dogru: "bakıyor", yanlis: "bakıor" },
-  { dogru: "her şey", yanlis: "herşey" },
+  { dogru: "herkes", yanlis: "herkez" },
+  { dogru: "yalnız", yanlis: "yanlız" },
+  { dogru: "yanlış", yanlis: "yalnış" },
   { dogru: "bir şey", yanlis: "birşey" },
-  { dogru: "ne zaman", yanlis: "nezaman" },
-  { dogru: "hiçbir", yanlis: "hicbir" },
-  { dogru: "hepimiz", yanlis: "hepmiz" },
-  { dogru: "geliyorum", yanlis: "gelıyorum" },
-  { dogru: "biliyorum", yanlis: "bılıyorum" },
-  { dogru: "yazıyorum", yanlis: "yazıyom" },
-  { dogru: "geliyorsun", yanlis: "gelıyorsun" },
-  { dogru: "ediyorum", yanlis: "edıyorum" },
-  { dogru: "kullanıyor", yanlis: "kullanıor" },
-  { dogru: "çalışıyorum", yanlis: "çalışıyom" },
-  { dogru: "bakıyorum", yanlis: "bakıyom" },
-  { dogru: "anlıyorum", yanlis: "anlıyom" },
-  { dogru: "biliyorsun", yanlis: "bılıyorsun" },
-  { dogru: "görüyorum", yanlis: "görüyom" },
+  { dogru: "birçok", yanlis: "bir çok" },
+  { dogru: "hiçbir", yanlis: "hiç bir" },
+  { dogru: "herhangi", yanlis: "her hangi" },
+  { dogru: "bir şey", yanlis: "bişey" },
+  { dogru: "iyi ki", yanlis: "iyiki" },
+  { dogru: "demek ki", yanlis: "demekki" },
+  { dogru: "tabii ki", yanlis: "tabiki" },
+  { dogru: "belki de", yanlis: "belkide" },
+  { dogru: "yine de", yanlis: "yinede" },
+  { dogru: "şimdi de", yanlis: "şimdide" },
+  { dogru: "artık da", yanlis: "artıkda" },
+  { dogru: "senin de", yanlis: "seninde" },
+  { dogru: "benim de", yanlis: "benimde" },
+  { dogru: "onun da", yanlis: "onunda" },
+  { dogru: "bizim de", yanlis: "bizimde" },
+  { dogru: "evde de", yanlis: "evdede" },
+  { dogru: "okulda da", yanlis: "okuldada" },
+  { dogru: "gelmedi de", yanlis: "gelmedide" },
+  { dogru: "yaptı da", yanlis: "yaptıda" },
+  { dogru: "gitti de", yanlis: "gittide" },
+  { dogru: "çok da", yanlis: "çokta" },
+  { dogru: "az da", yanlis: "azda" },
+  { dogru: "hiç de", yanlis: "hiçte" },
+  { dogru: "biraz da", yanlis: "birazda" },
+  { dogru: "olur da", yanlis: "olurda" },
+  { dogru: "geliyor musun", yanlis: "geliyormusun" },
+  { dogru: "yapar mısın", yanlis: "yaparmısın" },
+  { dogru: "gelmez mi", yanlis: "gelmezmi" },
+  { dogru: "okudun mu", yanlis: "okudunmu" },
+  { dogru: "bilmiyor musun", yanlis: "bilmiyormusun" },
+  { dogru: "anlayabiliyor musun", yanlis: "anlıyabiliyormusun" },
+  { dogru: "gidiyor muyuz", yanlis: "gidiyormuyuz" },
+  { dogru: "yapıyor muydun", yanlis: "yapıyormuydun" },
+  { dogru: "yanlış mı", yanlis: "yanlışmı" },
+  { dogru: "doğru mu", yanlis: "doğrumu" },
+  { dogru: "gelir misin", yanlis: "gelirmisin" },
+  { dogru: "görür müydün", yanlis: "görürmüydün" },
+  { dogru: "gidebilir misin", yanlis: "gidebilirmisin" },
+  { dogru: "yapabilir miydin", yanlis: "yapabilirmiydin" },
+  { dogru: "gelmiş miydi", yanlis: "gelmişmiydi" },
+  { dogru: "gelecek", yanlis: "gelicek" },
+  { dogru: "yapacak", yanlis: "yapıcak" },
+  { dogru: "geleceğim", yanlis: "gelicem" },
+  { dogru: "gideceğim", yanlis: "gidicem" },
+  { dogru: "bakacağım", yanlis: "bakıcam" },
+  { dogru: "okuyacağım", yanlis: "okucam" },
+  { dogru: "yazacağım", yanlis: "yazcam" },
+  { dogru: "söyleyeceğim", yanlis: "söylicem" },
+  { dogru: "diyeceğim", yanlis: "dicem" },
+  { dogru: "yapıyor", yanlis: "yapıyo" },
+  { dogru: "geliyor", yanlis: "geliyo" },
+  { dogru: "gidiyor", yanlis: "gidiyo" },
+  { dogru: "geliyorum", yanlis: "geliyom" },
+  { dogru: "gidiyorum", yanlis: "gidiyom" },
   { dogru: "yapıyorum", yanlis: "yapıyom" },
-  { dogru: "seviyorum", yanlis: "seviyom" },
-  { dogru: "istiyorum", yanlis: "istiyom" },
-  { dogru: "alıyorum", yanlis: "alıyom" },
-  { dogru: "veriyorum", yanlis: "veriyom" },
+  { dogru: "geliyorsun", yanlis: "geliyosun" },
+  { dogru: "gidiyorsun", yanlis: "gidiyosun" },
+  { dogru: "yapıyorsun", yanlis: "yapıyosun" },
+  { dogru: "geliyorlar", yanlis: "geliyolar" },
+  { dogru: "gidiyorlar", yanlis: "gidiyolar" },
+  { dogru: "yapıyorlar", yanlis: "yapıyolar" },
+  { dogru: "gelmiyorlar", yanlis: "gelmiyolar" },
+  { dogru: "yapmıyorlar", yanlis: "yapmıyolar" },
+  { dogru: "gelmiyorsun", yanlis: "gelmiyosun" },
+  { dogru: "gitmiyorsun", yanlis: "gitmiyosun" },
+  { dogru: "yapmıyorsun", yanlis: "yapmıyosun" },
+  { dogru: "orada", yanlis: "orda" },
+  { dogru: "burada", yanlis: "burda" },
+  { dogru: "şurada", yanlis: "şurda" },
+  { dogru: "oradaki", yanlis: "ordaki" },
+  { dogru: "buradaki", yanlis: "burdaki" },
+  { dogru: "şuradaki", yanlis: "şurdaki" },
+  { dogru: "şu an", yanlis: "şuan" },
+  { dogru: "şu anki", yanlis: "şuanki" },
+  { dogru: "şu anda", yanlis: "şuanda" },
+  { dogru: "bugünkü", yanlis: "bugünki" },
+  { dogru: "dünkü", yanlis: "dünki" },
+  { dogru: "yarınki", yanlis: "yarınki" },
+  { dogru: "ya da", yanlis: "yada" },
+  { dogru: "fark etmek", yanlis: "farketmek" },
+  { dogru: "terk etmek", yanlis: "terketmek" },
+  { dogru: "affetmek", yanlis: "af etmek" },
+  { dogru: "sabretmek", yanlis: "sabır etmek" },
+  { dogru: "emretmek", yanlis: "emir etmek" },
+  { dogru: "öngörü", yanlis: "ön görü" },
+  { dogru: "öngörmek", yanlis: "ön görmek" },
+  { dogru: "önyargı", yanlis: "ön yargı" },
+  { dogru: "önyargılı", yanlis: "ön yargılı" },
+  { dogru: "önyargısız", yanlis: "ön yargısız" },
+  { dogru: "önsöz", yanlis: "ön söz" },
+  { dogru: "önsözlü", yanlis: "ön sözlü" },
+  { dogru: "birdenbire", yanlis: "birden bire" },
+  { dogru: "gitgide", yanlis: "git gide" },
+  { dogru: "art arda", yanlis: "artarda" },
+  { dogru: "peş peşe", yanlis: "peşpeşe" },
+  { dogru: "yanı sıra", yanlis: "yanısıra" },
+  { dogru: "bir arada", yanlis: "birarada" },
+  { dogru: "birbirine", yanlis: "biribirine" },
+  { dogru: "birbirinden", yanlis: "biribirinden" },
+  { dogru: "birbirini", yanlis: "biribirini" },
+  { dogru: "birbirimiz", yanlis: "biribirimiz" },
+  { dogru: "hiç kimse", yanlis: "hiçkimse" },
+  { dogru: "hiçbir şey", yanlis: "hiçbirşey" },
+  { dogru: "hiçbir şeyi", yanlis: "hiçbirşeyi" },
+  { dogru: "hiçbir şeye", yanlis: "hiçbirşeye" },
+  { dogru: "herhangi bir", yanlis: "herhangibir" },
+  { dogru: "herhangi biri", yanlis: "herhangibiri" },
+  { dogru: "şoför", yanlis: "şöför" },
+  { dogru: "kibrit", yanlis: "kirbit" },
+  { dogru: "kirpik", yanlis: "kiprik" },
+  { dogru: "psikoloji", yanlis: "pisikoloji" },
+  { dogru: "eşofman", yanlis: "eşortman" },
+  { dogru: "makine", yanlis: "makina" },
+  { dogru: "tıraş", yanlis: "traş" },
+  { dogru: "kılavuz", yanlis: "klavuz" },
+  { dogru: "egzoz", yanlis: "egsoz" },
+  { dogru: "müsaade", yanlis: "müsade" },
+  { dogru: "yalnızlık", yanlis: "yanlızlık" },
+  { dogru: "herkesten", yanlis: "herkezden" },
+  { dogru: "yanlışlık", yanlis: "yalnışlık" },
+  { dogru: "birkaç", yanlis: "bi kaç" },
+  { dogru: "birtakım", yanlis: "bir takım" },
+  { dogru: "birtakımı", yanlis: "bir takımı" },
+  { dogru: "birtakım şeyler", yanlis: "bir takım şeyler" },
 ]
 
 type Durum = "basla" | "oyun" | "sonuc"
@@ -82,10 +168,10 @@ export function YazimYanlisOyunu() {
     setSoruIndex(rastgeleIndex)
 
     const secilenSoru = kelimeler[rastgeleIndex]
-    const solTaraf = Math.random() < 0.5 ? "dogru" : "yanlis"
+    // Sol = yanlış, Sağ = doğru (sabit)
     setSoru({
-      dogru: solTaraf === "dogru" ? secilenSoru.dogru : secilenSoru.yanlis,
-      yanlis: solTaraf === "dogru" ? secilenSoru.yanlis : secilenSoru.dogru,
+      dogru: secilenSoru.dogru,
+      yanlis: secilenSoru.yanlis,
     })
   }, [kullanilanSorular])
 
@@ -178,18 +264,18 @@ export function YazimYanlisOyunu() {
             <p className="text-lg font-medium dark:text-gray-200 mb-4">Doğru yazılış hangisi?</p>
             <div className="grid grid-cols-2 gap-4">
               <Button
-                onClick={() => cevapVer(soru.dogru)}
-                variant="outline"
-                className="h-24 text-lg font-semibold dark:border-gray-600 dark:hover:bg-gray-700"
-              >
-                {soru.dogru}
-              </Button>
-              <Button
                 onClick={() => cevapVer(soru.yanlis)}
                 variant="outline"
                 className="h-24 text-lg font-semibold dark:border-gray-600 dark:hover:bg-gray-700"
               >
                 {soru.yanlis}
+              </Button>
+              <Button
+                onClick={() => cevapVer(soru.dogru)}
+                variant="outline"
+                className="h-24 text-lg font-semibold dark:border-gray-600 dark:hover:bg-gray-700"
+              >
+                {soru.dogru}
               </Button>
             </div>
           </div>
