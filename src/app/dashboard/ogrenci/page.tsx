@@ -3,7 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Calendar, BookMarked, CalendarCheck, User } from "lucide-react"
+import { Calendar, BookMarked, CalendarCheck, User, Gamepad2 } from "lucide-react"
 
 export default function OgrenciDashboardPage() {
   const stats = [
@@ -85,6 +85,12 @@ export default function OgrenciDashboardPage() {
             <Button className="w-full" variant="outline">
               <BookMarked className="mr-2 h-4 w-4" />
               Ödevlerim
+            </Button>
+          </Link>
+          <Link href="/dashboard/ogrenci/oyunlar">
+            <Button className="w-full" variant="outline">
+              <Gamepad2 className="mr-2 h-4 w-4" />
+              Eğitici Oyunlar
             </Button>
           </Link>
           <Link href="/dashboard/ogrenci/profil">
